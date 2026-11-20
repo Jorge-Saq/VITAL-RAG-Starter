@@ -12,3 +12,9 @@ def test_context_includes_source():
 
 def test_empty_corpus():
     assert retrieve("question", documents=[]) == []
+
+def test_unsupported_question_retrieves_nothing():
+    assert retrieve("Does the clinic provide free transportation?") == []
+
+def test_billing_question_retrieves_billing():
+    assert "billing.txt" in [n for n, _, _ in retrieve("How can I pay my bill?")]
